@@ -1,0 +1,29 @@
+name: Sample Workflow
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: execute "build job" with echo command
+      run: echo "build job"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: execute "sast test" with echo command
+      run: echo "sast test"
+    - name: execute "linter test" with echo command
+      run: echo "linter test"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - name: execute "deploy job" with echo command
+      run: echo "deploy job"
